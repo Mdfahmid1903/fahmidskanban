@@ -55,11 +55,12 @@ function dragEnd(e) {
 
 function dragOver(e) {
   e.preventDefault();
+    this.classList.add("over");
+
 }
 
 function dragEnter(e) {
   e.preventDefault();
-  this.classList.add("over");
 }
 
 function dragLeave(e) {
