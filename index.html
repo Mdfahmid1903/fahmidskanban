@@ -9,30 +9,57 @@
   <body>
     <div class="container">
       <h1>Simple Kanban Board</h1>
-
       <div class="board">
-        <!-- list 1-->
+        <!-- list 1 -->
         <div class="list" id="list1">
           <h2>To Do</h2>
-          <div class="card" draggable="true" id="card1">Watch tutorials</div>
-          <div class="card" draggable="true" id="card2">Practice projects</div>
-          <div class="card" draggable="true" id="card3">learn JS</div>
-          <div class="card" draggable="true" id="card4">write code</div>
+          <div class="cards-container">
+            <div class="card" draggable="true" id="card1">
+              <span class="card-text" contenteditable="true"
+                >Watch tutorials</span
+              >
+              <button class="delete-btn">✕</button>
+            </div>
+            <div class="card" draggable="true" id="card2">
+              <span class="card-text" contenteditable="true"
+                >Practice projects</span
+              >
+              <button class="delete-btn">✕</button>
+            </div>
+            <div class="card" draggable="true" id="card3">
+              <span class="card-text" contenteditable="true">Learn JS</span>
+              <button class="delete-btn">✕</button>
+            </div>
+            <div class="card" draggable="true" id="card4">
+              <span class="card-text" contenteditable="true">Write code</span>
+              <button class="delete-btn">✕</button>
+            </div>
+          </div>
+          <button class="add-btn" onclick="addCard('list1')">+ Add new</button>
         </div>
 
-        <!-- list 2-->
-        <div class="list" id="list1">
+        <!-- list 2 -->
+        <div class="list" id="list2">
           <h2>In Progress</h2>
-          <div class="card" draggable="true" id="card3">Learn to code</div>
+          <div class="cards-container">
+            <div class="card" draggable="true" id="card5">
+              <span class="card-text" contenteditable="true"
+                >Learn to code</span
+              >
+              <button class="delete-btn">✕</button>
+            </div>
+          </div>
+          <button class="add-btn" onclick="addCard('list2')">+ Add new</button>
         </div>
 
-        <!-- list 3-->
-        <div class="list" id="list1">
+        <!-- list 3 -->
+        <div class="list" id="list3">
           <h2>Done</h2>
+          <div class="cards-container"></div>
+          <button class="add-btn" onclick="addCard('list3')">+ Add new</button>
         </div>
       </div>
     </div>
-
     <script src="/script.js"></script>
   </body>
 </html>

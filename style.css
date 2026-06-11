@@ -7,7 +7,15 @@
 body {
   font-family: sans-serif;
   background-color: #f7f9fc;
-  background: linear-gradient(315deg, rgb(252, 184, 226) 0%, rgb(255, 200, 237) 20%, rgb(251, 232, 249) 40%, rgb(232, 249, 255) 60%, rgb(208, 236, 255) 80%, rgb(184, 205, 250) 100%);
+  background: linear-gradient(
+    315deg,
+    rgb(252, 184, 226) 0%,
+    rgb(255, 200, 237) 20%,
+    rgb(251, 232, 249) 40%,
+    rgb(232, 249, 255) 60%,
+    rgb(208, 236, 255) 80%,
+    rgb(184, 205, 250) 100%
+  );
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,6 +24,8 @@ body {
 
 .container {
   text-align: center;
+  width: 100%;
+  padding: 20px;
 }
 
 h1 {
@@ -28,7 +38,7 @@ h1 {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-  width: 100vw;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   gap: 20px;
@@ -38,9 +48,11 @@ h1 {
   background-color: #f3eaf2;
   padding: 1rem;
   border-radius: 8px;
-  width: 25%;
+  width: 30%;
   min-height: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
 }
 
 .list h2 {
@@ -48,15 +60,26 @@ h1 {
   margin-bottom: 1rem;
   font-size: 1.5rem;
 }
+
+.cards-container {
+  flex: 1;
+  min-height: 300px;
+  margin-bottom: 10px;
+}
+
 .card {
   background-color: white;
   color: #333;
-  padding: 1rem;
+  padding: 0.8rem 1rem;
   margin-bottom: 10px;
   border-radius: 8px;
   cursor: grab;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
 }
 
 .card:hover {
@@ -67,21 +90,74 @@ h1 {
 .card:active {
   cursor: grabbing;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transform: translateY(0); 
+  transform: translateY(0);
 }
 
-.list.over{
-    background-color: #d1d3d8;
+.card-text {
+  flex: 1;
+  outline: none;
+  text-align: left;
+  word-break: break-word;
 }
 
-@media(max-width: 768px){
-    .board{
-        flex-direction: column;
-        align-items: center;
-    }
+.card-text:focus {
+  background: #fffbcc;
+  padding: 4px;
+  border-radius: 4px;
+}
 
-    .list {
-        width: 80%;
-        margin-bottom: 20px;
-    }
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: #d9534f;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.delete-btn:hover {
+  background: #ffe0e0;
+  color: #c9302c;
+  transform: scale(1.1);
+}
+
+.list.over {
+  background-color: #d1d3d8;
+}
+
+.add-btn {
+  width: 100%;
+  margin-top: auto;
+  padding: 0.5rem;
+  border-radius: 15px;
+  border: 1px dashed #999;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  color: #555;
+}
+
+.add-btn:hover {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+.add-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .board {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .list {
+    width: 90%;
+  }
 }
