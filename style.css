@@ -7,15 +7,10 @@
 body {
   font-family: sans-serif;
   background-color: #f7f9fc;
-  background: linear-gradient(
-    315deg,
-    rgb(252, 184, 226) 0%,
-    rgb(255, 200, 237) 20%,
-    rgb(251, 232, 249) 40%,
-    rgb(232, 249, 255) 60%,
-    rgb(208, 236, 255) 80%,
-    rgb(184, 205, 250) 100%
-  );
+  background: #a8c0ff;  
+background: -webkit-linear-gradient(to right, #3f2b96, #a8c0ff);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3f2b96, #a8c0ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   display: flex;
   justify-content: center;
   align-items: center;
