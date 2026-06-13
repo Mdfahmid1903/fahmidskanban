@@ -1,7 +1,6 @@
 // ====== Setup existing cards on page load ======
-const cards = document.querySelectorAll(".card");
-const lists = document.querySelectorAll(".list");
-const clearBtn = document.querySelector(".clear-btn");
+const cards = document.querySelectorAll('.card');
+const lists = document.querySelectorAll('.list');
 
 for (const card of cards) {
   setupCard(card);
@@ -10,28 +9,29 @@ for (const card of cards) {
 }
 
 for (const list of lists) {
-  list.addEventListener("dragover", dragOver);
-  list.addEventListener("dragenter", dragEnter);
-  list.addEventListener("dragleave", dragLeave);
-  list.addEventListener("drop", dragDrop);
+  list.addEventListener('dragover', dragOver);
+  list.addEventListener('dragenter', dragEnter);
+  list.addEventListener('dragleave', dragLeave);
+  list.addEventListener('drop', dragDrop);
 }
 
 // ====== Reusable function to setup any card ======
 function setupCard(card) {
   // Drag events
-  card.addEventListener("dragstart", dragStart);
-  card.addEventListener("dragend", dragEnd);
+  card.addEventListener('dragstart', dragStart);
+  card.addEventListener('dragend', dragEnd);
 
   // Text editing events
-  const cardText = card.querySelector(".card-text");
+  const cardText = card.querySelector('.card-text');
   if (cardText) {
-    cardText.addEventListener("blur", () => {
+    cardText.addEventListener('blur', () => {
       const newText = cardText.innerText;
-      console.log("Updated:", newText);
+      console.log('Updated:', newText);
+      saveData();
     });
 
-    cardText.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
+    cardText.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
         e.preventDefault();
         cardText.blur();
       }
@@ -39,73 +39,69 @@ function setupCard(card) {
   }
 
   // Delete button event
-  const deleteBtn = card.querySelector(".delete-btn");
+  const deleteBtn = card.querySelector('.delete-btn');
   if (deleteBtn) {
-    deleteBtn.addEventListener("click", () => {
+    deleteBtn.addEventListener('click', () => {
       card.remove();
-        updateCount();
-        updateEmptyMessage();
-
+      updateCount();
+      updateEmptyMessage();
+      saveData();
     });
   }
 }
 
 // ====== Drag and Drop functions ======
 function dragStart(e) {
-  e.dataTransfer.setData("text/plain", e.currentTarget.id);
+  e.dataTransfer.setData('text/plain', e.currentTarget.id);
 }
 
 function dragEnd(e) {
-  console.log("Drag ended");
-  this.classList.remove("over");
-
+  console.log('Drag ended');
+  this.classList.remove('over');
 }
 
 function dragOver(e) {
   e.preventDefault();
-    this.classList.add("over");
-
+  this.classList.add('over');
 }
 
 function dragEnter(e) {
   e.preventDefault();
-      // this.classList.add("over");
-
+  // this.classList.add("over");
 }
 
 function dragLeave(e) {
-    this.classList.remove("over");
-
+  this.classList.remove('over');
 }
 
 function dragDrop(e) {
   e.preventDefault();
-  const id = e.dataTransfer.getData("text/plain");
+  const id = e.dataTransfer.getData('text/plain');
   const card = document.getElementById(id);
-  const cardsContainer = this.querySelector(".cards-container");
+  const cardsContainer = this.querySelector('.cards-container');
   if (cardsContainer) {
     cardsContainer.appendChild(card);
   } else {
     this.appendChild(card);
   }
-  this.classList.remove("over");
-    updateCount();
-    updateEmptyMessage();
-
+  this.classList.remove('over');
+  updateCount();
+  updateEmptyMessage();
+  saveData();
 }
 
 // ====== Add new card function ======
 function addCard(listId) {
   const list = document.getElementById(listId);
-  const cardsContainer = list.querySelector(".cards-container");
+  const cardsContainer = list.querySelector('.cards-container');
 
   // Generate unique id based on total cards
-  const totalCards = document.querySelectorAll(".card").length;
-  const newId = "card" + (totalCards + 1);
+  const totalCards = document.querySelectorAll('.card').length;
+  const newId = 'card' + (totalCards + 1);
 
   // Create new card element
-  const newCard = document.createElement("div");
-  newCard.classList.add("card");
+  const newCard = document.createElement('div');
+  newCard.classList.add('card');
   newCard.draggable = true;
   newCard.id = newId;
 
@@ -122,7 +118,7 @@ function addCard(listId) {
   setupCard(newCard);
 
   // Auto focus and select text
-  const newCardText = newCard.querySelector(".card-text");
+  const newCardText = newCard.querySelector('.card-text');
   newCardText.focus();
 
   // Select all text for easy editing
@@ -133,30 +129,29 @@ function addCard(listId) {
   selection.addRange(range);
   updateCount();
   updateEmptyMessage();
+  saveData();
 }
 
 function updateCount(list) {
- 
-  const allLists = document.querySelectorAll(".list");
-  
+  const allLists = document.querySelectorAll('.list');
+
   for (const list of allLists) {
-    const countSpan = list.querySelector(".count");
+    const countSpan = list.querySelector('.count');
     if (countSpan) {
-      const cardsInThisList = list.querySelectorAll(".card").length;
+      const cardsInThisList = list.querySelectorAll('.card').length;
       countSpan.innerText = cardsInThisList;
     }
   }
 }
-function updateEmptyMessage(){
-  const containers = document.querySelectorAll(".cards-container");
+function updateEmptyMessage() {
+  const containers = document.querySelectorAll('.cards-container');
 
   for (const container of containers) {
-    const cards = container.querySelectorAll(".card");
+    const cards = container.querySelectorAll('.card');
     if (cards.length === 0) {
       container.innerHTML = '<p class="empty-message">No tasks here</p>';
-    }
-   else {
-      const emptyMessage = container.querySelector(".empty-message");
+    } else {
+      const emptyMessage = container.querySelector('.empty-message');
       if (emptyMessage) {
         emptyMessage.remove();
       }
@@ -166,18 +161,78 @@ function updateEmptyMessage(){
 
 function clearAll(listId) {
   const list = document.getElementById(listId);
-  const cardsContainer = list.querySelector(".cards-container");
-  const cardCount = cardsContainer.querySelectorAll(".card").length;
+  const cardsContainer = list.querySelector('.cards-container');
+  const cardCount = cardsContainer.querySelectorAll('.card').length;
 
   if (cardCount === 0) {
-    alert("There are no cards to clear!");
+    alert('There are no cards to clear!');
     return;
   }
 
-  if (!confirm("Clear all cards from this list?")) return;
+  if (!confirm('Clear all cards from this list?')) return;
 
-  cardsContainer.innerHTML = "";
+  cardsContainer.innerHTML = '';
+  updateCount();
+  updateEmptyMessage();
+  saveData();
+}
+
+// ====== Save all cards to localStorage ======
+function saveData() {
+  const data = {};
+  const allLists = document.querySelectorAll('.list');
+
+  for (const list of allLists) {
+    const cardTexts = [];
+    const cards = list.querySelectorAll('.card');
+    for (const card of cards) {
+      const text = card.querySelector('.card-text').innerText;
+      cardTexts.push(text);
+    }
+    data[list.id] = cardTexts;
+  }
+
+  localStorage.setItem('kanbanData', JSON.stringify(data));
+}
+
+// ====== Load cards from localStorage ======
+function loadData() {
+  const saved = localStorage.getItem('kanbanData');
+  if (!saved) return; // first time visitor — keep default cards
+
+  const data = JSON.parse(saved);
+
+  // Clear default cards first
+  const allContainers = document.querySelectorAll('.cards-container');
+  for (const container of allContainers) {
+    container.innerHTML = '';
+  }
+
+  // Recreate saved cards
+  let cardNum = 1;
+  for (const listId in data) {
+    const list = document.getElementById(listId);
+    const cardsContainer = list.querySelector('.cards-container');
+
+    for (const text of data[listId]) {
+      const newCard = document.createElement('div');
+      newCard.classList.add('card');
+      newCard.draggable = true;
+      newCard.id = 'card' + cardNum;
+      cardNum++;
+
+      newCard.innerHTML = `
+        <span class="card-text" contenteditable="true">${text}</span>
+        <button class="delete-btn">✕</button>
+      `;
+
+      cardsContainer.appendChild(newCard);
+      setupCard(newCard);
+    }
+  }
+
   updateCount();
   updateEmptyMessage();
 }
-clearBtn.addEventListener("click", clearAll);
+
+loadData();
