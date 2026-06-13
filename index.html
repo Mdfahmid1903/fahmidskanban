@@ -12,7 +12,7 @@
       <div class="board">
         <!-- list 1 -->
         <div class="list" id="list1">
-          <h2>To Do</h2>
+          <h2>To Do (<span class="count"></span>)</h2>
           <div class="cards-container">
             <div class="card" draggable="true" id="card1">
               <span class="card-text" contenteditable="true"
@@ -35,12 +35,19 @@
               <button class="delete-btn">✕</button>
             </div>
           </div>
-          <button class="add-btn" onclick="addCard('list1')">+ Add new</button>
+          <div class="buttons">
+            <button class="add-btn" onclick="addCard('list1')">
+              + Add new
+            </button>
+            <button class="clear-btn" onclick="clearAll('list1')">
+              Clear all x
+            </button>
+          </div>
         </div>
 
         <!-- list 2 -->
         <div class="list" id="list2">
-          <h2>In Progress</h2>
+          <h2>In Progress (<span class="count"></span>)</h2>
           <div class="cards-container">
             <div class="card" draggable="true" id="card5">
               <span class="card-text" contenteditable="true"
@@ -49,14 +56,28 @@
               <button class="delete-btn">✕</button>
             </div>
           </div>
-          <button class="add-btn" onclick="addCard('list2')">+ Add new</button>
+          <div class="buttons">
+            <button class="add-btn" onclick="addCard('list2')">
+              + Add new
+            </button>
+            <button class="clear-btn" onclick="clearAll('list2')">
+              Clear all x
+            </button>
+          </div>
         </div>
 
         <!-- list 3 -->
         <div class="list" id="list3">
-          <h2>Done</h2>
+          <h2>Done (<span class="count"></span>)</h2>
           <div class="cards-container"></div>
-          <button class="add-btn" onclick="addCard('list3')">+ Add new</button>
+          <div class="buttons">
+            <button class="add-btn" onclick="addCard('list3')">
+              + Add new
+            </button>
+            <button class="clear-btn" onclick="clearAll('list3')">
+              Clear all x
+            </button>
+          </div>
         </div>
       </div>
     </div>

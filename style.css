@@ -129,7 +129,7 @@ h1 {
 }
 
 .add-btn {
-  width: 100%;
+  width: 45%;
   margin-top: auto;
   padding: 0.5rem;
   border-radius: 15px;
@@ -142,7 +142,7 @@ h1 {
 }
 
 .add-btn:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 150, 0, 0.6);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transform: translateY(-3px);
 }
@@ -151,6 +151,38 @@ h1 {
   transform: translateY(0);
 }
 
+.empty-message{
+   text-align: center;
+  color: #999;
+  font-style: italic;
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.clear-btn:hover {
+  background: rgba(255, 0, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+.clear-btn:active {
+  transform: translateY(0);
+}
+
+.clear-btn{
+  width: 45%;
+  margin-top: auto;
+  padding: 0.5rem;
+  border-radius: 15px;
+  border: 1px dashed #999;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  color: #555;
+}
 @media (max-width: 768px) {
   .board {
     flex-direction: column;

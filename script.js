@@ -1,9 +1,12 @@
 // ====== Setup existing cards on page load ======
 const cards = document.querySelectorAll(".card");
 const lists = document.querySelectorAll(".list");
+const clearBtn = document.querySelector(".clear-btn");
 
 for (const card of cards) {
   setupCard(card);
+  updateCount();
+  updateEmptyMessage();
 }
 
 for (const list of lists) {
@@ -40,6 +43,9 @@ function setupCard(card) {
   if (deleteBtn) {
     deleteBtn.addEventListener("click", () => {
       card.remove();
+        updateCount();
+        updateEmptyMessage();
+
     });
   }
 }
@@ -51,6 +57,8 @@ function dragStart(e) {
 
 function dragEnd(e) {
   console.log("Drag ended");
+  this.classList.remove("over");
+
 }
 
 function dragOver(e) {
@@ -61,10 +69,13 @@ function dragOver(e) {
 
 function dragEnter(e) {
   e.preventDefault();
+      // this.classList.add("over");
+
 }
 
 function dragLeave(e) {
-  this.classList.remove("over");
+    this.classList.remove("over");
+
 }
 
 function dragDrop(e) {
@@ -78,6 +89,9 @@ function dragDrop(e) {
     this.appendChild(card);
   }
   this.classList.remove("over");
+    updateCount();
+    updateEmptyMessage();
+
 }
 
 // ====== Add new card function ======
@@ -117,4 +131,53 @@ function addCard(listId) {
   const selection = window.getSelection();
   selection.removeAllRanges();
   selection.addRange(range);
+  updateCount();
+  updateEmptyMessage();
 }
+
+function updateCount(list) {
+ 
+  const allLists = document.querySelectorAll(".list");
+  
+  for (const list of allLists) {
+    const countSpan = list.querySelector(".count");
+    if (countSpan) {
+      const cardsInThisList = list.querySelectorAll(".card").length;
+      countSpan.innerText = cardsInThisList;
+    }
+  }
+}
+function updateEmptyMessage(){
+  const containers = document.querySelectorAll(".cards-container");
+
+  for (const container of containers) {
+    const cards = container.querySelectorAll(".card");
+    if (cards.length === 0) {
+      container.innerHTML = '<p class="empty-message">No tasks here</p>';
+    }
+   else {
+      const emptyMessage = container.querySelector(".empty-message");
+      if (emptyMessage) {
+        emptyMessage.remove();
+      }
+    }
+  }
+}
+
+function clearAll(listId) {
+  const list = document.getElementById(listId);
+  const cardsContainer = list.querySelector(".cards-container");
+  const cardCount = cardsContainer.querySelectorAll(".card").length;
+
+  if (cardCount === 0) {
+    alert("There are no cards to clear!");
+    return;
+  }
+
+  if (!confirm("Clear all cards from this list?")) return;
+
+  cardsContainer.innerHTML = "";
+  updateCount();
+  updateEmptyMessage();
+}
+clearBtn.addEventListener("click", clearAll);
