@@ -7,11 +7,12 @@
 body {
   font-family: sans-serif;
   background-color: #f7f9fc;
-   background: linear-gradient(
-    135deg,
-    rgb(252, 184, 226) 0%,
-    #a8d8ea 100%
-  );
+  background: linear-gradient(
+  135deg,
+  rgb(252, 184, 226) 0%,
+  #a8d8ea 50%,
+  #3381bd 100%
+);
   display: flex;
   justify-content: center;
   align-items: center;
