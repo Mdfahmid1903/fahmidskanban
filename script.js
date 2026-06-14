@@ -28,6 +28,7 @@ function setupCard(card) {
       const newText = cardText.innerText;
       console.log('Updated:', newText);
       saveData();
+      cardText.spellcheck = false;
     });
 
     cardText.addEventListener('keydown', (e) => {
@@ -236,3 +237,38 @@ function loadData() {
 }
 
 loadData();
+
+const darkModeBtn = document.getElementById("darkModeBtn");
+
+darkModeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  const isDark = document.body.classList.contains("dark-mode");
+  darkModeBtn.innerText = isDark ? "☀️ Light" : "🌙 Dark";
+
+  // Remember user's choice
+  localStorage.setItem("darkMode", isDark);
+});
+
+// On page load — restore last preference
+if (localStorage.getItem("darkMode") === "true") {
+  document.body.classList.add("dark-mode");
+  darkModeBtn.innerText = "☀️ Light";
+}
+
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("input", () => {
+  const query = searchInput.value.toLowerCase().trim();
+  const allCards = document.querySelectorAll(".card");
+
+  for (const card of allCards) {
+    const cardText = card.querySelector(".card-text").innerText.toLowerCase();
+
+    if (cardText.includes(query)) {
+      card.style.display = "";       // show matching card
+    } else {
+      card.style.display = "none";   // hide non-matching card
+    }
+  }
+});

@@ -25,6 +25,112 @@ body {
   padding: 20px;
 }
 
+.search-input {
+  position: fixed;
+  left: 20px;
+  top: 5%;
+  transform: translateY(-50%);
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  outline: none;
+  width: 220px;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.9);
+  width: 260px;   /* slight expand when typing */
+}
+
+/* Dark mode version */
+body.dark-mode .search-input {
+  background: rgba(255, 255, 255, 0.15);
+  color: #f3f4f6;
+}
+
+body.dark-mode .search-input::placeholder {
+  color: #aaa;
+}
+
+/* Header layout — h1 stays centered, button floats right */
+.header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.dark-mode-btn {
+  position: fixed;
+  right: 20px;
+  top: 5%;
+  transform: translateY(-50%);
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.dark-mode-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== Dark mode styles ===== */
+
+body.dark-mode {
+  background: linear-gradient(
+    135deg,
+    #3d2952 0%,
+    #1e293b 50%,
+    #0f172a 100%
+  );
+  color: #e5e7eb;
+}
+
+body.dark-mode h1,
+body.dark-mode h2 {
+  color: #f3f4f6;
+}
+
+body.dark-mode .list {
+  background: rgba(40, 40, 60, 0.6);
+}
+
+body.dark-mode .card {
+  background: #2a2a3e;
+  color: #e5e7eb;
+}
+
+body.dark-mode .empty-message {
+  color: #888;
+  border-color: #555;
+}
+
+body.dark-mode .add-btn,
+body.dark-mode .clear-btn {
+  background: transparent;
+  color: #e5e7eb;
+  border-color: #666;
+}
+
+body.dark-mode .dark-mode-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: #f3f4f6;
+}
+
+/* Smooth transition between modes */
+body,
+.list,
+.card {
+  transition: background 0.4s ease, color 0.3s ease;
+}
+
 h1 {
   color: #333;
   margin-bottom: 20px;
@@ -188,5 +294,55 @@ h1 {
 
   .list {
     width: 90%;
+  }
+}
+
+/* ===== Tablet (≤ 768px) ===== */
+@media (max-width: 768px) {
+  .search-input {
+    width: 160px;
+    font-size: 13px;
+    padding: 6px 12px;
+    left: 15px;
+  }
+
+  .search-input:focus {
+    width: 180px;
+  }
+
+  .dark-mode-btn {
+    font-size: 13px;
+    padding: 6px 12px;
+    right: 15px;
+  }
+
+  h1 {
+    font-size: 22px;     /* shrink title so it fits */
+    margin-top: 50px;    /* push down so it doesn't sit under fixed buttons */
+  }
+}
+
+/* ===== Phone (≤ 480px) ===== */
+@media (max-width: 480px) {
+  .search-input {
+    width: 110px;
+    font-size: 12px;
+    padding: 5px 10px;
+    left: 10px;
+  }
+
+  .search-input:focus {
+    width: 130px;
+  }
+
+  .dark-mode-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+    right: 10px;
+  }
+
+  h1 {
+    font-size: 18px;
+    margin-top: 55px;
   }
 }
